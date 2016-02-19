@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load core_extras %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -67,14 +68,9 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        
-        <div class="container">
-            <div class="jumbotron" id="jumbotron">
-                <h1>2016 Winter Season Starting!</h1>
-                <p>Join our friendly community to learn the art of poking balls with sticks</p>
-                <p><a class="btn btn-primary btn-lg" id="hide-me" href="#" role="button">Learn more</a></p>
-            </div>
-        </div>
+        {% block jumbotron %}
+        {% get_jumbotron %}
+        {% endblock %}
         <div class="container">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#">Feed</a></li>
@@ -84,11 +80,13 @@
                 <li><a href="#">Resources</a></li>
             </ul>
             <div class="row">
-                <div class="col-lg-8">
-                    
+                <div class="col-lg-9">
+                    {% block large_block %}
+                    {% endblock %}
                 </div>
-                <div class="col-lg-4">
-                    
+                <div class="col-lg-3">
+                    {% block small_block %}
+                    {% endblock %}
                 </div>
             </div>
         </div>

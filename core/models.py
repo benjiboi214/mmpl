@@ -19,6 +19,7 @@ class Post(models.Model):
     title = models.CharField(max_length=128, verbose_name='Title')
     body = models.TextField(verbose_name='Content')
     feature = models.BooleanField(default=True, verbose_name='Featured')
+    large = models.BooleanField(default=True, verbose_name='Large Post')
     #image = 
     #files = 
         

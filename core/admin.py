@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     #exclude = ['author', 'date',]
     fieldsets = [
         (None, {'fields': ['title', 'body']}),
-        ('Details', {'fields': ['category', 'author', 'date', 'feature'], 
+        ('Details', {'fields': ['category', 'author', 'date', 'feature', 'large',], 
                      'classes': ['collapse']}),
     ]
     list_display = ('title', 'date', 'feature',)

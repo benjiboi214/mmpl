@@ -46,3 +46,9 @@ body {
     background-position: center center;
     color: #e6e6e6
 }
+
+div {
+    border-style: dashed;
+    border-color: aqua;
+    border-width: 2px;
+}

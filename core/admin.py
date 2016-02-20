@@ -7,11 +7,13 @@ class PostAdmin(admin.ModelAdmin):
     #exclude = ['author', 'date',]
     fieldsets = [
         (None, {'fields': ['title', 'body']}),
-        ('Details', {'fields': ['category', 'author', 'date', 'feature', 'large',], 
+        ('Details', {'fields': ['category', 'author', 'date',], 
                      'classes': ['collapse']}),
+        ('Location', {'fields': ['post_type', 'hidden'],
+        			  'classes': ['collapse']}),
     ]
-    list_display = ('title', 'date', 'feature',)
-    list_filter = ('date',)
+    list_display = ('title', 'date', 'post_type', 'hidden')
+    list_filter = ('date', 'post_type', 'hidden')
     search_fields = ['title', 'body',]
     
     def save_model(self, request, obj, form, change):

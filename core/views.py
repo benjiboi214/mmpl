@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from core.models import Post
 
 def index(request):
-    large = Post.objects.filter(large=True, feature=False)
-    small = Post.objects.filter(large=False, feature=False)
+    large = Post.objects.filter(post_type='LG', hidden=False)
+    small = Post.objects.filter(post_type='SM', hidden=False)
     
     large_posts = large.order_by('-date')
     small_posts = small.order_by('-date')

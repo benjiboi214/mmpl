@@ -1,11 +1,26 @@
 {% extends "core/base.html" %}
+
+{% block nav_tabs %}
+
+    <ul class="nav nav-tabs">
+        {% if actual_category %} <li> {% else %} <li class="active"> {% endif %}<a href="#">Feed</a></li>
+        {% if actual_category == 'News' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">News</a></li>
+        {% if actual_category == 'Events' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">Events</a></li>
+        {% if actual_category == 'Results' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">Results</a></li>
+        {% if actual_category == 'Resources' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">Resources</a></li>
+    </ul>
+
+{% endblock %}
+
+
+
 {% block large_block %}
 
 
 {% for post in large_posts %}
 <div class="row">
     <h1>
-        {{ post.title }}
+        <a href="post/{{ post.slug }}">{{ post.title }}</a>
     </h1>
     
     <p>{{ post.body }}</p>
@@ -23,9 +38,9 @@
 {% for post in small_posts %}
 <div class="row">
     <h3>
-        {{ post.title }}
+        <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
     </h3>
-    
+
     <p>{{ post.body }}</p>
     
 </div>

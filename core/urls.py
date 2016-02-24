@@ -6,5 +6,7 @@ import views
 
 urlpatterns = [
     
-    url(r'^', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
+    url(r'^post/(?P<post_name_slug>[\w\-\d\/]+)/$', views.post, name='post'),
 ]
+

@@ -72,13 +72,8 @@
         {% get_jumbotron %}
         {% endblock %}
         <div class="container">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#">Feed</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Results</a></li>
-                <li><a href="#">Resources</a></li>
-            </ul>
+            {% block nav_tabs %}
+            {% endblock %}
             <div class="row">
                 <div class="col-lg-9">
                     {% block large_block %}

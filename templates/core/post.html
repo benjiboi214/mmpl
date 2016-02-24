@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+{% block large_block %}
+
+<div class="row">
+    
+    <h1>{{ post.title }}</h1>
+    
+    <h3>{{ post.get_category_display }}</h3>
+    
+    <p>{{ post.body }}</p>
+    
+    <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
+
+</div>
+
+{% endblock %}

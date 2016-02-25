@@ -1,49 +1,40 @@
 {% extends "core/base.html" %}
 
-{% block nav_tabs %}
-
-    <ul class="nav nav-tabs">
-        {% if actual_category %} <li> {% else %} <li class="active"> {% endif %}<a href="#">Feed</a></li>
-        {% if actual_category == 'News' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">News</a></li>
-        {% if actual_category == 'Events' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">Events</a></li>
-        {% if actual_category == 'Results' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">Results</a></li>
-        {% if actual_category == 'Resources' %} <li class="active"> {% else %} <li> {% endif %}<a href="#">Resources</a></li>
-    </ul>
-
-{% endblock %}
-
-
-
-{% block large_block %}
-
-
-{% for post in large_posts %}
-<div class="row">
-    <h1>
-        <a href="post/{{ post.slug }}">{{ post.title }}</a>
-    </h1>
+{% block body %}
+    <div class="col-lg-9">
+        {% if large_posts %}
+            {% for post in large_posts %}
+                <div class="row">
+                    <h1>
+                        <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
+                    </h1>
+                    <p>{{ post.body }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row">
+                <h1>No posts to display.</h1>
+            </div>
+        {% endif %}
+    </div>
     
-    <p>{{ post.body }}</p>
-    
-    <!--<div class="col-lg-3">
-    
-    </div>-->
-</div>
-{% endfor %}
-
-
-{% endblock %}
-{% block small_block %}
-
-{% for post in small_posts %}
-<div class="row">
-    <h3>
-        <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
-    </h3>
-
-    <p>{{ post.body }}</p>
-    
-</div>
-{% endfor %}
-
+    <div class="col-lg-3">
+        {% if small_posts %}
+            {% for post in small_posts %}
+                <div class="row">
+                    <h3>
+                        <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
+                    </h3>
+                <p>{{ post.body|slice:":200" }}...</p>
+                </div>
+                <div class="row">
+                    <a href="{% url 'post' post.slug %}"><p style="text-align:right">More</p></a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="row">
+                <h1>No posts to display.</h1>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

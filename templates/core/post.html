@@ -1,16 +1,17 @@
 {% extends "core/base.html" %}
-{% block large_block %}
+{% block body %}
 
 <div class="row">
+    <div class="col-lg-10">
+        <h1>{{ post.title }}</h1>
     
-    <h1>{{ post.title }}</h1>
+        <p>{{ post.body }}</p>
     
-    <h3>{{ post.get_category_display }}</h3>
-    
-    <p>{{ post.body }}</p>
-    
-    <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
-
+        <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
+    </div>
+    <div class='col-lg-2'>
+        <h3>{{ post.get_category_display }}</h3>
+    </div>
 </div>
 
 {% endblock %}

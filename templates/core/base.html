@@ -72,17 +72,16 @@
         {% get_jumbotron %}
         {% endblock %}
         <div class="container">
-            {% block nav_tabs %}
-            {% endblock %}
+            <ul class="nav nav-tabs">
+                {% if actual_category %} <li> {% else %} <li class="active"> {% endif %}<a href="{% url 'index' %}">Feed</a></li>
+                {% if actual_category == 'News' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'news' %}">News</a></li>
+                {% if actual_category == 'Events' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'events' %}">Events</a></li>
+                {% if actual_category == 'Results' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'results' %}">Results</a></li>
+                {% if actual_category == 'Resources' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'resources' %}">Resources</a></li>
+            </ul>
             <div class="row">
-                <div class="col-lg-9">
-                    {% block large_block %}
-                    {% endblock %}
-                </div>
-                <div class="col-lg-3">
-                    {% block small_block %}
-                    {% endblock %}
-                </div>
+                {% block body %}
+                {% endblock %}
             </div>
         </div>
         

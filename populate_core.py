@@ -56,6 +56,15 @@ Nunc nec enim et neque dapibus tempor ac nec diam. Mauris quis efficitur quam, a
         hidden = True
     )
 
+    add_post(
+        username = 'ben',
+        category = 'EV',
+        title = 'Fourth Post about Events!',
+        body = 'Ut tellus eros, cursus eu nunc a, finibus gravida massa. Aliquam ullamcorper aliquam dui et tristique. Praesent facilisis ut nunc id pretium. Phasellus vulputate bibendum dui, quis viverra nunc tristique ac. Sed luctus condimentum maximus. Fusce posuere sollicitudin tincidunt. Nullam pulvinar ultricies nibh nec hendrerit. Sed feugiat non tortor in luctus. Quisque ut leo malesuada odio aliquet lacinia eget eu quam. Sed nec pulvinar nisi. Morbi pretium neque quis odio interdum auctor. In sit amet mollis odio. Nunc ornare viverra feugiat.',
+        post_type = 'LG',
+        hidden = False
+    )
+
 def add_post(username, category, title, body, post_type, hidden):
     author = User.objects.get(username='%s' % username)
     p = Post.objects.get_or_create(author=author, title=title)[0]

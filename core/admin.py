@@ -1,13 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from core.models import Post
+from django.core.urlresolvers import reverse
 
 class PostAdmin(admin.ModelAdmin):
     readonly_fields = ['author', 'date',]
     #exclude = ['author', 'date',]
     fieldsets = [
         (None, {'fields': ['title', 'body']}),
-        ('Details', {'fields': ['category', 'author', 'date',], 
+        ('Media', {'fields': ['image', 'file'],
+        			'classes': ['collapse']}),
+        ('Details', {'fields': ['category', 'author', 'date'], 
                      'classes': ['collapse']}),
         ('Location', {'fields': ['post_type', 'hidden'],
         			  'classes': ['collapse']}),
@@ -20,6 +23,10 @@ class PostAdmin(admin.ModelAdmin):
         if not change:
             obj.author = User.objects.get(id = request.user.id)
         obj.save()
+    
+    def view_on_site(self, obj):
+        return 'http://127.0.0.1:8000' + reverse('post',
+        										 kwargs={'post_name_slug': obj.slug})
 
 
 admin.site.register(Post, PostAdmin)

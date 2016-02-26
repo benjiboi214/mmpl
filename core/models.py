@@ -29,9 +29,9 @@ class Post(models.Model):
     #Content fields
     title = models.CharField(max_length=128, verbose_name='Title')
     body = models.TextField(verbose_name='Content')
-    #image = 
-    #files = 
-    
+    image = models.ImageField(upload_to='images/%Y/%m', blank=True)
+    file = models.FileField(upload_to='files/%Y/%m', blank=True)
+        
     #Location detail fields
     post_type = models.CharField(max_length=2,
     							 choices=POST_TYPE_CHOICES,

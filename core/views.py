@@ -67,3 +67,22 @@ def resources(request):
     
     response = render(request, 'core/feed.html', context_dict)
     return response
+
+#Un hash after template, url and form are complete
+#def contact(request):
+#    
+#    if request.method == 'POST':
+#        form = ContactForm(request.POST)
+#        if form.is_valid():
+#            form.save(commite=True)
+#            #request.form_submitted = True #will this work? add info in index request to pull this info out and display info regarding successful form submission
+#            return index(request)
+#        else:
+#            print form.errors
+#    else:
+#        form = ContactForm()
+#    
+#    context_dict = {'form': form}
+#    
+#    response = render(request, 'core/contact.html', context_dict)
+#    return response

@@ -5,8 +5,12 @@
     <div class="col-lg-10">
         <h1>{{ post.title }}</h1>
     
+        {% if post.image %}
+        <img src="{{ post.image.url }}" height="{{ post.image.height }}" width="{{ post.image.width }}">
+        {% endif %}
+        
         <p>{{ post.body }}</p>
-    
+        
         <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
     </div>
     <div class='col-lg-2'>

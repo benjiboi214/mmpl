@@ -1,13 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from core.models import Post
+from core.forms import ContactForm
+from django.shortcuts import redirect
+#ContactForm email imports
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
+from django.template import Context
+from django.contrib import messages
+
 
 def index(request):
     large = Post.objects.filter(post_type='LG', hidden=False).order_by('-date')
     small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
 
     context_dict = {'large_posts': large, 
-    				'small_posts': small,}
+    				'small_posts': small,
+    				'actual_category': 'Feed'}
     
     response = render(request, 'core/feed.html', context_dict)
     return response
@@ -69,20 +78,55 @@ def resources(request):
     return response
 
 #Un hash after template, url and form are complete
-#def contact(request):
-#    
-#    if request.method == 'POST':
-#        form = ContactForm(request.POST)
-#        if form.is_valid():
-#            form.save(commite=True)
-#            #request.form_submitted = True #will this work? add info in index request to pull this info out and display info regarding successful form submission
-#            return index(request)
-#        else:
-#            print form.errors
-#    else:
-#        form = ContactForm()
-#    
-#    context_dict = {'form': form}
-#    
-#    response = render(request, 'core/contact.html', context_dict)
-#    return response
+def contact(request):
+    form_class = ContactForm
+    
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+        
+        if form.is_valid():
+            contact_name = request.POST.get(
+                'contact_name',
+                '')
+            contact_email = request.POST.get(
+                'contact_email',
+                '')
+            form_content = request.POST.get('content', '')
+            
+            #Email the profile with the contact info
+            template = get_template('contact_template.txt')
+            context = Context({
+                'contact_name': contact_name,
+                'contact_email': contact_email,
+                'form_content': form_content,
+            })
+            content = template.render(context)
+            
+            email = EmailMessage(
+                "New contact form submission",
+                content,
+                "Your website" +'',
+                ['youremail@gmail.com'],
+                headers = {'Reply-To': contact_email }
+            )
+            email.send()
+            messages.success(request, 'Email Sent')
+            
+            return render(request, 'core/contact.html')
+    
+    context_dict = {'form': form_class,}
+        
+    response = render(request, 'core/contact.html', context_dict)
+    return response
+
+
+
+
+
+
+
+
+
+
+
+

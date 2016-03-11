@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+#from core.views import FeedView
 import views
 
 #urlpatterns = patterns('',
@@ -12,6 +13,8 @@ urlpatterns = [
     url(r'^results/$', views.results, name='results'),
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^resources/$', views.resources, name='resources'),
+    #url(r'^testing/$', FeedView.as_view()),
     url(r'^(?P<post_name_slug>[\w\-\d\/]+)/$', views.post, name='post'),
+
     
 ]

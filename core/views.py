@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from core.models import Post
 from core.forms import ContactForm
 from django.shortcuts import redirect
+#class based view imports
+from django.views.generic import TemplateView
 #ContactForm email imports
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
@@ -119,14 +121,12 @@ def contact(request):
     response = render(request, 'core/contact.html', context_dict)
     return response
 
-
-
-
-
-
-
-
-
-
-
-
+#class FeedView(TemplateView):
+#    template_name = 'core/feed.html'
+#    
+#    def get_context_data(self, **kwargs):
+#        context = super(FeedView, self).get_context_data(**kwargs)
+#        context['large_posts'] = Post.objects.filter(post_type='LG', hidden=False).order_by('-date')
+#        context['small_posts'] = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
+#        context['actual_category'] = 'Feed'
+#        return context

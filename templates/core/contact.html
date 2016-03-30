@@ -1,19 +1,22 @@
 {% extends "core/base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block title %} - Contact{% endblock %}
 
 {% block body %}
-    <h1>Contact Us</h1>
+    <div class="col-lg-10 col-lg-offset-2">
+        <h2>Contact Us</h2>
+    </div>
     {% if messages %}
         {% for message in messages %}
             <h3>{{ message }}</h3>
         {% endfor %}
     {% endif %}
     {% if form %}
-    <form role="form" action="" method="post">
+    <form class="form-horizontal"role="form" action="" method="post">
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Submit</button>
+        {% crispy form %}
     </form>
     {% endif %}
 

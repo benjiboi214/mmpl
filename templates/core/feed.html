@@ -4,10 +4,10 @@
     <div class="col-lg-9">
         {% if large_posts %}
             {% for post in large_posts %}
-                <div class="row">
-                    <h1>
+                <div class="row test">
+                    <h2>
                         <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
-                    </h1>
+                    </h2>
                     <p>{{ post.body }}</p>
                 </div>
             {% endfor %}
@@ -21,7 +21,7 @@
     <div class="col-lg-3">
         {% if small_posts %}
             {% for post in small_posts %}
-                <div class="row">
+                <div class="row test test2">
                     <h3>
                         <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
                     </h3>

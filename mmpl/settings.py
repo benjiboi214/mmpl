@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -112,3 +113,5 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 EMAIL_PORT = 1025
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

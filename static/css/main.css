@@ -47,8 +47,28 @@ body {
     color: #e6e6e6
 }
 
-div {
+/*div {
     border-style: dashed;
     border-color: aqua;
     border-width: 2px;
+}*/
+
+.row .test {
+    background-color: #E7EAE1;
+    margin: 10px;
+    padding: 5px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.row .test2 {
+    background-color: #E7EAE1;
+    margin-top: 10px;
+    padding: 0px;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
 }

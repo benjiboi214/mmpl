@@ -130,3 +130,4 @@ def contact(request):
 #        context['small_posts'] = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
 #        context['actual_category'] = 'Feed'
 #        return context
+

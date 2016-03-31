@@ -6,7 +6,7 @@
             {% for post in large_posts %}
                 <div class="row feed feed-primary text">
                     <h2>
-                        <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
+                        <a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a>
                     </h2>
                     <p>{{ post.body }}</p>
                 </div>
@@ -23,10 +23,10 @@
             {% for post in small_posts %}
                 <div class="row feed text">
                     <h3>
-                        <a href="{% url 'post' post.slug %}">{{ post.title }}</a>
+                        <a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a>
                     </h3>
                     <p>{{ post.body|slice:":300" }}...</p>
-                    <a href="{% url 'post' post.slug %}"><p style="text-align:right">More</p></a>
+                    <a href="{% url 'post' post.id post.slug %}"><p style="text-align:right">More</p></a>
                 </div>
             {% endfor %}
         {% else %}

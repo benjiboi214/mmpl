@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
 from django.template.defaultfilters import slugify
-import datetime
 
 # Create your models here.
 class Post(models.Model):
@@ -41,9 +39,7 @@ class Post(models.Model):
     slug = models.SlugField()
     
     def save(self, *args, **kwargs):
-        d = datetime.datetime.now().date()
-        d_str = '%s-%s-%s/' % (d.year, d.month, d.day)
-        self.slug = d_str + slugify(self.title)
+        self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

@@ -6,7 +6,7 @@
 
 {% block body %}
     <div class="col-lg-10 col-lg-offset-2">
-        <h2>Contact Us</h2>
+        <h2>{% if title %}{{ title }}{% else %}Contact Us{% endif %}</h2>
     </div>
     {% if messages %}
         {% for message in messages %}

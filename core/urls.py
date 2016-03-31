@@ -15,5 +15,5 @@ urlpatterns = [
     url(r'^(?P<form_context>join)/$', views.contact, name='join'),
     url(r'^resources/$', views.resources, name='resources'),
     #url(r'^testing/$', FeedView.as_view()),
-    url(r'^(?P<post_name_slug>[\w\-\d\/]+)/$', views.post, name='post'),
+    url(r'^(?P<post_id>[\d]+)/(?P<post_slug>[\w\-\d\/]+)/$', views.post, name='post'),
 ]

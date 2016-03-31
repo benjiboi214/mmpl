@@ -1,21 +1,27 @@
 {% extends "core/base.html" %}
 {% block body %}
 
-<div class="row">
-    <div class="col-lg-10">
-        <h1>{{ post.title }}</h1>
-    
-        {% if post.image %}
-        <img src="{{ post.image.url }}" height="{{ post.image.height }}" width="{{ post.image.width }}">
-        {% endif %}
-        
-        <p>{{ post.body }}</p>
-        
-        <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
+{% if post %}
+    <div class="row text">
+        <div class="col-lg-10">
+            <h1>{{ post.title }}</h1>
+
+            {% if post.image %}
+            <img src="{{ post.image.url }}" height="{{ post.image.height }}" width="{{ post.image.width }}">
+            {% endif %}
+
+            <p>{{ post.body }}</p>
+
+            <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
+        </div>
+        <div class='col-lg-2'>
+            <h3>{{ post.get_category_display }}</h3>
+        </div>
     </div>
-    <div class='col-lg-2'>
-        <h3>{{ post.get_category_display }}</h3>
+{% else %}
+    <div class="text">
+        <h1> No Post Here. Suck Shit Loser.</h1>
     </div>
-</div>
+{% endif %}
 
 {% endblock %}

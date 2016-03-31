@@ -23,15 +23,16 @@ def index(request):
     response = render(request, 'core/feed.html', context_dict)
     return response
 
-def post(request, post_name_slug):
+def post(request, post_id, post_slug):
     
     context_dict = {}
-    try:
-        post = Post.objects.get(slug=post_name_slug)
-        context_dict['post'] = post
-    except Post.DoesNotExist:
-        pass
     
+    try:
+        post = Post.objects.filter(id=post_id, slug=post_slug)
+        context_dict['post'] = post[0]
+    except IndexError: #to account for the Post filter not finding anything and the 
+        pass
+
     response = render(request, 'core/post.html', context_dict)
     return response
 
@@ -81,10 +82,13 @@ def resources(request):
 
 #Un hash after template, url and form are complete
 def contact(request, form_context):
+    context_dict = {}
     if form_context == 'join':
         form_class = JoinForm
+        context_dict['title'] = 'Join Us'
     else:
         form_class = ContactForm
+        context_dict['title'] = 'Contact Us'
     
     if request.method == 'POST':
         form = form_class(data=request.POST)
@@ -119,7 +123,7 @@ def contact(request, form_context):
             
             return render(request, 'core/contact.html')
     
-    context_dict = {'form': form_class,}
+    context_dict['form'] = form_class
         
     response = render(request, 'core/contact.html', context_dict)
     return response

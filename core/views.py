@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from core.models import Post
-from core.forms import ContactForm
+from core.forms import ContactForm, JoinForm
 from django.shortcuts import redirect
 #class based view imports
 from django.views.generic import TemplateView
@@ -80,8 +80,11 @@ def resources(request):
     return response
 
 #Un hash after template, url and form are complete
-def contact(request):
-    form_class = ContactForm
+def contact(request, form_context):
+    if form_context == 'join':
+        form_class = JoinForm
+    else:
+        form_class = ContactForm
     
     if request.method == 'POST':
         form = form_class(data=request.POST)

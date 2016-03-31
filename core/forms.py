@@ -16,7 +16,7 @@ class ContactForm(forms.Form):
         super(ContactForm, self).__init__(*args, **kwargs)
         self.fields['contact_name'].label = "Your name:"
         self.fields['contact_email'].label = "Your email:"
-        self.fields['content'].label = "Tell us about your experience. Where have you played? What tournaments have you participated in?"
+        self.fields['content'].label = "Your query:"
         self.helper = FormHelper()
         self.helper.label_class = 'col-lg-2 text'
         self.helper.field_class = 'col-lg-10'
@@ -32,4 +32,4 @@ class JoinForm(ContactForm):
     
     def __init__(self, *args, **kwargs):
         super(JoinForm, self).__init__(*args, **kwargs)
-        self.fields['content'].label = "Your query:"
+        self.fields['content'].label = "Tell us about your experience. Where have you played? What tournaments have you participated in?"

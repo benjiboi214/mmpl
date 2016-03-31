@@ -14,6 +14,7 @@ body {
     margin-bottom: 60px;
     padding-top: 70px;
     min-height: 2000px;
+    background-image: url("../img/skulls-white.jpg")
 }
 .footer {
     position: absolute;
@@ -47,28 +48,25 @@ body {
     color: #e6e6e6
 }
 
-/*div {
+/* * {
     border-style: dashed;
     border-color: aqua;
     border-width: 2px;
 }*/
 
-.row .test {
-    background-color: #E7EAE1;
-    margin: 10px;
-    padding: 5px;
-    border-color: black;
-    border-style: solid;
+.text {
+    background-color: white;
+    border-style: hidden;
     border-width: 1px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
-.row .test2 {
-    background-color: #E7EAE1;
+.feed {
     margin-top: 10px;
-    padding: 0px;
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5px;
+    margin-right: 0px;
+    padding: 5px;
+}
+
+.feed-primary {
+    margin-left: 0px;
 }

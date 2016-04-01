@@ -26,7 +26,8 @@ class PostAdmin(admin.ModelAdmin):
     
     def view_on_site(self, obj):
         return 'http://127.0.0.1:8000' + reverse('post',
-        										 kwargs={'post_name_slug': obj.slug})
+        										 kwargs={'post_slug': obj.slug,
+        										 		 'post_id': obj.id})
 
 
 admin.site.register(Post, PostAdmin)

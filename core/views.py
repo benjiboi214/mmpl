@@ -11,85 +11,60 @@ from django.core.mail import EmailMessage
 from django.template import Context
 from django.contrib import messages
 
+category_dict = {'NE': 'News',
+       			 'EV': 'Events',
+       			 'RU': 'Results',
+       			 'RO': 'Resources',
+       			 'FE': 'Feed'}
 
-def index(request):
-    large = Post.objects.filter(post_type='LG', hidden=False).order_by('-date')
+def get_topic(request, category=False):
+    if category:
+        large = Post.objects.filter(post_type='LG', hidden=False, category=category).order_by('-date')
+    else:
+        large = Post.objects.filter(post_type='LG', hidden=False).order_by('-date')
+        category = 'FE'
     small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
-
-    context_dict = {'large_posts': large, 
+    
+    context_dict = {'large_posts': large,
     				'small_posts': small,
-    				'actual_category': 'Feed'}
+    				'actual_category': category_dict[category],}
     
     response = render(request, 'core/feed.html', context_dict)
     return response
 
+def index(request):
+    return get_topic(request)
+
+def news(request):
+    return get_topic(request, 'NE')
+    
+def events(request):
+	return get_topic(request, 'EV')
+
+def results(request):
+    return get_topic(request, 'RU')
+
+def resources(request):
+    return get_topic(request, 'RO')
+    
 def post(request, post_id, post_slug):
     
     context_dict = {}
-    
     try:
         post = Post.objects.filter(id=post_id, slug=post_slug)
         context_dict['post'] = post[0]
     except IndexError: #to account for the Post filter not finding anything and the 
         pass
-
+    
+    context_dict['actual_category'] = category_dict[post[0].category]
+    
     response = render(request, 'core/post.html', context_dict)
     return response
 
-def news(request):
-    large = Post.objects.filter(post_type='LG', hidden=False, category='NE').order_by('-date')
-    small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
+def get_contact_form(request, form_class, title):
     
-    context_dict = {'large_posts': large,
-    				'small_posts': small,
-    				'actual_category': 'News',}
-    
-    response = render(request, 'core/feed.html', context_dict)
-    return response
-
-def events(request):
-    large = Post.objects.filter(post_type='LG', hidden=False, category='EV').order_by('-date')
-    small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
-    
-    context_dict = {'large_posts': large,
-    				'small_posts': small,
-    				'actual_category': 'Events',}
-    
-    response = render(request, 'core/feed.html', context_dict)
-    return response
-
-def results(request):
-    large = Post.objects.filter(post_type='LG', hidden=False, category='RU').order_by('-date')
-    small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
-    
-    context_dict = {'large_posts': large,
-    				'small_posts': small,
-    				'actual_category': 'Results',}
-    
-    response = render(request, 'core/feed.html', context_dict)
-    return response
-
-def resources(request):
-    large = Post.objects.filter(post_type='LG', hidden=False, category='RO').order_by('-date')
-    small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
-    
-    context_dict = {'large_posts': large,
-    				'small_posts': small,
-    				'actual_category': 'Resources',}
-    
-    response = render(request, 'core/feed.html', context_dict)
-    return response
-
-#Un hash after template, url and form are complete
-def contact(request, form_context):
     context_dict = {}
-    if form_context == 'join':
-        form_class = JoinForm
-        context_dict['title'] = 'Join Us'
-    else:
-        form_class = ContactForm
-        context_dict['title'] = 'Contact Us'
-    
+
     if request.method == 'POST':
         form = form_class(data=request.POST)
         
@@ -124,9 +99,16 @@ def contact(request, form_context):
             return render(request, 'core/contact.html')
     
     context_dict['form'] = form_class
+    context_dict['title'] = title
         
     response = render(request, 'core/contact.html', context_dict)
     return response
+
+def contact(request):
+    return get_contact_form(request, ContactForm, 'Contact Us')
+
+def join(request):
+    return get_contact_form(request, JoinForm, 'Join Us')
 
 #class FeedView(TemplateView):
 #    template_name = 'core/feed.html'

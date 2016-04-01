@@ -70,3 +70,9 @@ body {
 .feed-primary {
     margin-left: 0px;
 }
+
+.post {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+}

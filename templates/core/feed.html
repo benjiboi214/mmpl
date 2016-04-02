@@ -1,18 +1,32 @@
 {% extends "core/base.html" %}
 
 {% block body %}
-    <div class="col-lg-9">
+    <div class="col-lg-9 vlign-p">
         {% if large_posts %}
             {% for post in large_posts %}
                 <div class="row feed feed-primary text">
-                    <h2>
-                        <a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a>
-                    </h2>
-                    <p>{{ post.body }}</p>
+                    <div class="col-lg-{% if post.image %}8{% else %}12{% endif %} vlign-c">    
+                        <h2>
+                            <a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a>
+                        </h2>
+                        <p>{{ post.body }}</p>
+                    </div>
+                    {% if post.image %}
+                    <div class="col-lg-4 vlign-c">
+                        <a href="{% url 'image' post.id post.slug %}">
+                            <img src="{{ post.image.url }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if post.file %}
+                    <div class="col-lg-8">
+                        <a href="{{ post.file.url }}">{{ post.file.name }}</a>
+                    </div>
+                    {% endif %}
                 </div>
             {% endfor %}
         {% else %}
-            <div class="row test">
+            <div class="row feed feed-primary text">
                 <h1>No posts to display.</h1>
             </div>
         {% endif %}

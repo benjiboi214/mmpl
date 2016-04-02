@@ -26,6 +26,7 @@ class Post(models.Model):
     
     #Content fields
     title = models.CharField(max_length=128, verbose_name='Title')
+    subtitle = models.CharField(max_length=128, verbose_name='Sub Title', blank=True)
     body = models.TextField(verbose_name='Content')
     image = models.ImageField(upload_to='images/%Y/%m', blank=True)
     file = models.FileField(upload_to='files/%Y/%m', blank=True)

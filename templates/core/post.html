@@ -5,6 +5,7 @@
     <div class="row text post">
         <div class="col-lg-10">
             <h1>{{ post.title }}</h1>
+            <h4>{{ post.subtitle }}</h4>
 
             {% if post.image %}
             <img src="{{ post.image.url }}" height="{{ post.image.height }}" width="{{ post.image.width }}">

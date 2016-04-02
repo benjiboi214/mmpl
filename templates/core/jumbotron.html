@@ -1,9 +1,9 @@
 {% for j in jumbotron %}
 <div class="container">
-    <div class="jumbotron" id="jumbotron">
+    <div class="jumbotron alert-box">
         <h1>{{ j.title }}</h1>
-        <p>{{ j.body }}</p>
-        <p><a class="btn btn-primary btn-lg" id="hide-me" href="#" role="button">Learn more</a></p>
+        <p>{{ j.subtitle }}</p>
+        <p><a class="btn btn-primary btn-lg" href="{% url 'post' j.id j.slug %}" role="button">Learn more</a></p>
     </div>
 </div>
 {% endfor %}

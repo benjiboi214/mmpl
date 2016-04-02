@@ -7,7 +7,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ['author', 'date',]
     #exclude = ['author', 'date',]
     fieldsets = [
-        (None, {'fields': ['title', 'body']}),
+        (None, {'fields': ['title', 'subtitle', 'body']}),
         ('Media', {'fields': ['image', 'file'],
         			'classes': ['collapse']}),
         ('Details', {'fields': ['category', 'author', 'date'], 

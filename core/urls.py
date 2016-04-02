@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^join/$', views.join, name='join'),
     url(r'^resources/$', views.resources, name='resources'),
     #url(r'^testing/$', FeedView.as_view()),
+    url(r'^(?P<post_id>[\d]+)/(?P<post_slug>[\w\-\d\/]+)/image/$', views.image, name='image'),
     url(r'^(?P<post_id>[\d]+)/(?P<post_slug>[\w\-\d\/]+)/$', views.post, name='post'),
+
 ]

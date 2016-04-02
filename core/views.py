@@ -47,8 +47,7 @@ def results(request):
 def resources(request):
     return get_topic(request, 'RO')
     
-def post(request, post_id, post_slug):
-    
+def content_view(request, post_id, post_slug, template):
     context_dict = {}
     try:
         post = Post.objects.filter(id=post_id, slug=post_slug)
@@ -58,8 +57,14 @@ def post(request, post_id, post_slug):
     
     context_dict['actual_category'] = category_dict[post[0].category]
     
-    response = render(request, 'core/post.html', context_dict)
+    response = render(request, template, context_dict)
     return response
+
+def post(request, post_id, post_slug):
+    return content_view(request, post_id, post_slug, 'core/post.html')
+
+def image(request, post_id, post_slug):
+    return content_view(request, post_id, post_slug, 'core/image.html')
 
 def get_contact_form(request, form_class, title):
     

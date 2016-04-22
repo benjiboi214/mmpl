@@ -47,8 +47,8 @@ body {
     background-position: center center;
     color: #e6e6e6
 }
-
-/** {
+/*
+* {
     border-style: dashed;
     border-color: aqua;
     border-width: 2px;
@@ -99,4 +99,8 @@ img {
 
 .center {
     text-align: center;
+}
+
+.form-horizontal {
+    padding-left: 15px
 }

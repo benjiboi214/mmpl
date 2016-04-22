@@ -1,8 +1,8 @@
 from django import forms
 from core.models import Post
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout
-from crispy_forms.bootstrap import StrictButton
+from crispy_forms.layout import Submit, Layout, Field
+from crispy_forms.bootstrap import StrictButton, FormActions
 
 class ContactForm(forms.Form):
     contact_name = forms.CharField(required=True)
@@ -21,10 +21,12 @@ class ContactForm(forms.Form):
         self.helper.label_class = 'col-lg-2 text'
         self.helper.field_class = 'col-lg-10'
         self.helper.layout = Layout(
-            'contact_name',
-            'contact_email',
-            'content',
-            Submit('submit', 'Send'),
+            Field('contact_name'),
+            Field('contact_email'),
+            Field('content'),
+            FormActions(
+    		    Submit('submit', 'Send')
+    		)
         )
 
 #for experimenting with form fuckery to display different titles depending on the link you click.

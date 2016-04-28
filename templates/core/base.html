@@ -77,16 +77,19 @@
         {% get_jumbotron %}
         {% endblock %}
         <div class="container">
-            <ul class="nav nav-tabs">
-                {% if actual_category == 'Feed' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'index' %}">Feed</a></li>
-                {% if actual_category == 'News' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'news' %}">News</a></li>
-                {% if actual_category == 'Events' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'events' %}">Events</a></li>
-                {% if actual_category == 'Results' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'results' %}">Results</a></li>
-                {% if actual_category == 'Resources' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'resources' %}">Resources</a></li>
-            </ul>
-            <div class="row">
-                {% block body %}
-                {% endblock %}
+            
+                <ul class="nav nav-tabs">
+                    {% if actual_category == 'Feed' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'index' %}">Feed</a></li>
+                    {% if actual_category == 'News' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'news' %}">News</a></li>
+                    {% if actual_category == 'Events' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'events' %}">Events</a></li>
+                    {% if actual_category == 'Results' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'results' %}">Results</a></li>
+                    {% if actual_category == 'Resources' %} <li class="active"> {% else %} <li> {% endif %}<a href="{% url 'resources' %}">Resources</a></li>
+                </ul>
+            <div class="feed-bg">
+                <div class="row feed-padding">
+                    {% block body %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
         <footer class="footer">

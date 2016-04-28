@@ -71,6 +71,15 @@ body {
     margin-left: 0px;
 }
 
+.feed-bg {
+    background-color: whitesmoke;
+}
+
+.feed-padding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .post {
     margin-left: 15px;
     margin-right: 15px;
@@ -93,7 +102,7 @@ img {
     float: none
 }
 
-.img-center {
+.col-lg-12 > img {
     margin: 0 auto;
 }
 
@@ -103,4 +112,14 @@ img {
 
 .form-horizontal {
     padding-left: 15px
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    background-color: whitesmoke;
+}
+
+.nav-tabs > li > a {
+    background-color: #e7e7e7;
 }

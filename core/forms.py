@@ -18,7 +18,7 @@ class ContactForm(forms.Form):
         self.fields['contact_email'].label = "Your email:"
         self.fields['content'].label = "Your query:"
         self.helper = FormHelper()
-        self.helper.label_class = 'col-lg-2 text'
+        self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-10'
         self.helper.layout = Layout(
             Field('contact_name'),

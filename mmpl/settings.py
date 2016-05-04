@@ -1,3 +1,5 @@
+from keys import secret
+
 """
 Django settings for mmpl project.
 
@@ -19,7 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-from keys import secret
 SECRET_KEY = secret
 
 # SECURITY WARNING: don't run with debug turned on in production!

@@ -11,18 +11,23 @@
                         </h2>
                         <p>{{ post.body }}</p>
                     </div>
-                    {% if post.image %}
-                    <div class="col-lg-4 vlign-c">
-                        <a href="{% url 'image' post.id post.slug %}">
-                            <img src="{{ post.image.url }}">
-                        </a>
-                    </div>
-                    {% endif %}
-                    {% if post.file %}
-                    <div class="col-lg-8">
-                        <a href="{{ post.file.url }}">{{ post.file.name }}</a>
-                    </div>
-                    {% endif %}
+                    {% for i in post.image.all %}
+                        {% if forloop.first %}
+                            <div class="col-lg-4 vlign-c">
+                                <a href="{% url 'image' post.id post.slug %}">
+                                    <img src="{{ i.image.url }}">
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                    {% endfor %}
+                    {% for i in post.file.all %}
+                        {% if forloop.first %}
+                            <div class="col-lg-8">
+                                <a href="{{ i.file.url }}">{{ i.title }}</a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             {% endfor %}
         {% else %}

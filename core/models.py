@@ -28,8 +28,6 @@ class Post(models.Model):
     title = models.CharField(max_length=128, verbose_name='Title')
     subtitle = models.CharField(max_length=128, verbose_name='Sub Title', blank=True)
     body = models.TextField(verbose_name='Content')
-    image = models.ImageField(upload_to='images/%Y/%m', blank=True)
-    file = models.FileField(upload_to='files/%Y/%m', blank=True)
 
     # Location detail fields
     post_type = models.CharField(max_length=2,
@@ -45,6 +43,32 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return self.slug
+
+    def __unicode__(self):
+        return self.title
+
+
+class Image(models.Model):
+    post = models.ForeignKey('Post', related_name='image')
+    title = models.CharField(max_length=128, verbose_name='Title')
+    description = models.CharField(max_length=128, verbose_name='Description')
+    image = models.ImageField(upload_to='images/%Y/%m')
+
+    def __unicode__(self):
+        return self.title
+
+    def image_admin(self):
+        # Put the ImageKit Thumbnail shit here.
+        return '<img src="%s"/>' % self.image.url
+    image_admin.allow_tags = True
+    image_admin.short_description = 'Preview'
+
+
+class File(models.Model):
+    post = models.ForeignKey('Post', related_name='file')
+    title = models.CharField(max_length=128, verbose_name='Title')
+    description = models.CharField(max_length=128, verbose_name='Description')
+    file = models.FileField(upload_to='files/%Y/%m')
 
     def __unicode__(self):
         return self.title

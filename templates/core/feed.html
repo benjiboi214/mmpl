@@ -1,57 +1,54 @@
 {% extends "core/base.html" %}
 
 {% block body %}
-    <div class="col-lg-9 vlign-p">
-        {% if large_posts %}
-            {% for post in large_posts %}
-                <div class="row feed feed-primary text">
-                    <div class="col-lg-{% if post.image %}8{% else %}12{% endif %} vlign-c">    
-                        <h2>
-                            <a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a>
-                        </h2>
-                        <p>{{ post.body }}</p>
-                    </div>
-                    {% for i in post.image.all %}
-                        {% if forloop.first %}
-                            <div class="col-lg-4 vlign-c">
-                                <a href="{% url 'image' post.id post.slug %}">
-                                    <img src="{{ i.image.url }}">
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% empty %}
-                    {% endfor %}
-                    {% for i in post.file.all %}
-                        {% if forloop.first %}
-                            <div class="col-lg-8">
-                                <a href="{{ i.file.url }}">{{ i.title }}</a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        {% else %}
-            <div class="row feed feed-primary text">
-                <h1>No posts to display.</h1>
-            </div>
-        {% endif %}
-    </div>
-    
-    <div class="col-lg-3">
-        {% if small_posts %}
-            {% for post in small_posts %}
-                <div class="row feed text">
-                    <h3>
-                        <a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a>
-                    </h3>
-                    <p>{{ post.body|slice:":300" }}...</p>
-                    <a href="{% url 'post' post.id post.slug %}"><p style="text-align:right">More</p></a>
-                </div>
-            {% endfor %}
-        {% else %}
-            <div class="row test2">
-                <h1>No posts to display.</h1>
-            </div>
-        {% endif %}
-    </div>
+  <div class="col-lg-9">
+    {% if large_posts %}
+      {% for post in large_posts %}
+        <div class="row text">
+          <div class="col-lg-{% if post.image.all %}8{% else %}12{% endif %} ">    
+            <h2><a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a></h2>
+            <p>{{ post.body|linebreaksbr }}</p>
+          </div>
+          {% for i in post.image.all %}
+            {% if forloop.first %}
+              <div class="col-lg-4">
+                <a href="{% url 'image' post.id post.slug %}">
+                  <img src="{{ i.image.url }}">
+                </a>
+              </div>
+            {% endif %}
+          {% empty %}
+          {% endfor %}
+          {% for i in post.file.all %}
+            {% if forloop.first %}
+              <div class="col-lg-8">
+                <p><a href="{{ i.file.url }}">{{ i.title }}</a></p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="row text">
+        <h1>No posts to display.</h1>
+      </div>
+    {% endif %}
+  </div>
+  <div class="col-lg-3">
+    {% if small_posts %}
+      {% for post in small_posts %}
+        <div class="row text">
+          <div class="col-lg-12">
+            <h3><a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a></h3>
+            <p>{{ post.body|slice:":300" }}...</p>
+            <a href="{% url 'post' post.id post.slug %}"><p style="text-align:right">More</p></a>
+          </div>
+        </div>
+      {% endfor %}
+      {% else %}
+        <div class="row">
+          <h1>No posts to display.</h1>
+        </div>
+    {% endif %}
+  </div>
 {% endblock %}

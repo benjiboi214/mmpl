@@ -20,11 +20,9 @@
           {% empty %}
           {% endfor %}
           {% for i in post.file.all %}
-            {% if forloop.first %}
               <div class="col-lg-8">
                 <p><a href="{{ i.file.url }}">{{ i.title }}</a></p>
               </div>
-            {% endif %}
           {% endfor %}
         </div>
       {% endfor %}

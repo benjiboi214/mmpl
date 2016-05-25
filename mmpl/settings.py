@@ -125,3 +125,5 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
+
+# import pdb; pdb.set_trace()

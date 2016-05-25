@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from core.models import Post
 from core.forms import ContactForm, JoinForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # ContactForm email imports
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
@@ -22,7 +23,16 @@ def get_topic(request, category=False):
         category = 'FE'
     small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
 
-    context_dict = {'large_posts': large,
+    paginator = Paginator(large, 4)
+    page = request.GET.get('page')
+    try:
+        large_posts = paginator.page(page)
+    except PageNotAnInteger:
+        large_posts = paginator.page(1)
+    except EmptyPage:
+        large_posts = paginator.page(paginator.num_pages)
+
+    context_dict = {'large_posts': large_posts,
                     'small_posts': small,
                     'actual_category': category_dict[category]}
 

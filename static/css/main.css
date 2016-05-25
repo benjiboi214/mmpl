@@ -73,7 +73,7 @@ body > .container {
 }
 
 .feed-bg {
-  background-color: whitesmoke;
+  background-color: #ededed;
 }
 
 .col-lg-12 > img {
@@ -88,12 +88,12 @@ body > .container {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  background-color: whitesmoke;
+  background-color: #ededed;
 }
 
 /*Nav links colouring*/
 .nav-tabs > li > a {
-  background-color: #e7e7e7;
+  background-color: #e0e0e0;
 }
 
 .feed-bg > .row > .col-lg-9 {

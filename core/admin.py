@@ -32,7 +32,7 @@ class PostAdmin(admin.ModelAdmin):
         (None, {'fields': ['title', 'subtitle', 'body']}),
         # ('Media', {'fields': ['Image', 'File'], 'classes': ['collapse']}),
         ('Details', {'fields': ['category', 'author', 'date'], 'classes': ['collapse']}),
-        ('Location', {'fields': ['post_type', 'hidden'], 'classes': ['collapse']}),
+        ('Location', {'fields': ['post_type', 'hidden', 'image_primary'], 'classes': ['collapse']}),
     ]
     list_display = ('title', 'date', 'post_type', 'hidden')
     list_filter = ('date', 'post_type', 'hidden')

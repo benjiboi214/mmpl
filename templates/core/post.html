@@ -5,12 +5,12 @@
       <div class="col-lg-10">
         <h1>{{ post.title }}</h1>
         <h4>{{ post.subtitle }}</h4>
+				<p>{{ post.body }}</p>
         {% for element in post.image.all %}
         <img src="{{ element.image.url }}" height="{{ element.image.height }}" width="{{ element.image.width }}">
         {% empty %}
         <!-- Nothing -->
         {% endfor %}
-        <p>{{ post.body }}</p>
         <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
       </div>
       <div class='col-lg-2'>

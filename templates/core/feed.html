@@ -4,27 +4,44 @@
   <div class="col-lg-9">
     {% if large_posts %}
       {% for post in large_posts %}
-        <div class="row text">
-          <div class="col-lg-{% if post.image.all %}8{% else %}12{% endif %} ">    
-            <h2><a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a></h2>
-            <p>{{ post.body|linebreaksbr }}</p>
-          </div>
-          {% for i in post.image.all %}
-            {% if forloop.first %}
-              <div class="col-lg-4">
-                <a href="{% url 'image' post.id post.slug %}">
-                  <img src="{{ i.image.url }}">
-                </a>
-              </div>
-            {% endif %}
-          {% empty %}
-          {% endfor %}
-          {% for i in post.file.all %}
-              <div class="col-lg-8">
-                <p><a href="{{ i.file.url }}">{{ i.title }}</a></p>
-              </div>
-          {% endfor %}
-        </div>
+        {% if post.image_primary %}
+					<div class="row text">
+						<div class="col-lg-12">
+							<h2><a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a></h2>
+							<p>{{ post.body|linebreaksbr }}</p>
+								{% for i in post.image.all %}
+									{% if forloop.first %}
+											<a href="{% url 'image' post.id post.slug %}">
+												<img src="{{ i.image.url }}">
+											</a>
+									{% endif %}
+								{% empty %}
+								{% endfor %}
+						</div>
+					</div>
+				{% else %}
+					<div class="row text">
+						<div class="col-lg-{% if post.image.all %}8{% else %}12{% endif %} ">    
+							<h2><a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a></h2>
+							<p>{{ post.body|linebreaksbr }}</p>
+						</div>
+						{% for i in post.image.all %}
+							{% if forloop.first %}
+								<div class="col-lg-4">
+									<a href="{% url 'image' post.id post.slug %}">
+										<img src="{{ i.image.url }}">
+									</a>
+								</div>
+							{% endif %}
+						{% empty %}
+						{% endfor %}
+						{% for i in post.file.all %}
+								<div class="col-lg-8">
+									<p><a href="{{ i.file.url }}">{{ i.title }}</a></p>
+								</div>
+						{% endfor %}
+					</div>
+				{% endif %}
       {% endfor %}
     {% else %}
       <div class="row text">
@@ -38,7 +55,7 @@
         <div class="row text">
           <div class="col-lg-12">
             <h3><a href="{% url 'post' post.id post.slug %}">{{ post.title }}</a></h3>
-            <p>{{ post.body|slice:":300" }}...</p>
+            <p>{{ post.body|slice:":500" }}...</p>
             <a href="{% url 'post' post.id post.slug %}"><p style="text-align:right">More</p></a>
           </div>
         </div>
@@ -49,4 +66,22 @@
         </div>
     {% endif %}
   </div>
+{% endblock %}
+
+{% block pagination %}
+<div class="pagination">
+		<span class="step-links">
+		{% if large_posts.has_previous %}
+			<a href="?page={{ large_posts.previous_page_number }}">previous</a>
+		{% endif %}
+
+		<span class="current">
+			Page {{ large_posts.number }} of {{ large_posts.paginator.num_pages }}.
+		</span>
+
+		{% if large_posts.has_next %}
+			<a href="?page={{ large_posts.next_page_number }}">next</a>
+		{% endif %}
+		</span>
+</div>
 {% endblock %}

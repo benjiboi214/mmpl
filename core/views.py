@@ -15,6 +15,18 @@ category_dict = {'NE': 'News',
                  'FE': 'Feed'}
 
 
+def paginate_me(request, objects, page_size):
+    paginator = Paginator(objects, page_size)
+    page = request.GET.get('page')
+    try:
+        output = paginator.page(page)
+    except PageNotAnInteger:
+        output = paginator.page(1)
+    except EmptyPage:
+        output = paginator.page(paginator.num_pages)
+    return output
+
+
 def get_topic(request, category=False):
     if category:
         large = Post.objects.filter(post_type='LG', hidden=False, category=category).order_by('-date')
@@ -23,14 +35,7 @@ def get_topic(request, category=False):
         category = 'FE'
     small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
 
-    paginator = Paginator(large, 4)
-    page = request.GET.get('page')
-    try:
-        large_posts = paginator.page(page)
-    except PageNotAnInteger:
-        large_posts = paginator.page(1)
-    except EmptyPage:
-        large_posts = paginator.page(paginator.num_pages)
+    large_posts = paginate_me(request, large, 4)
 
     context_dict = {'large_posts': large_posts,
                     'small_posts': small,

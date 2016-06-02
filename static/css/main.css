@@ -83,6 +83,10 @@ body > .container {
   text-align: center;
 }
 
+.pag-r {
+	text-align: right;
+}
+
 /*Colouring for the tabs*/
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,

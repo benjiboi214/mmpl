@@ -13,7 +13,8 @@ class Post(models.Model):
     POST_TYPE_CHOICES = (
         ('LG', 'Large'),
         ('SM', 'Small'),
-        ('FE', 'Feature')
+        ('FE', 'Feature'),
+        ('IM', 'Image')
     )
 
     # Detail fields
@@ -27,6 +28,7 @@ class Post(models.Model):
 
     # Content fields
     title = models.CharField(max_length=128, verbose_name='Title')
+    slug = models.SlugField()
     subtitle = models.CharField(max_length=128, verbose_name='Sub Title', blank=True)
     body = models.TextField(verbose_name='Content')
 
@@ -37,8 +39,6 @@ class Post(models.Model):
         default='LG',
         verbose_name='Post Type')
     hidden = models.BooleanField(default=False, verbose_name='Hidden')
-    image_primary = models.BooleanField(default=False, verbose_name='Image Primary')
-    slug = models.SlugField()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

@@ -7,6 +7,7 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.template import Context
 from django.contrib import messages
+from django.db import models
 
 category_dict = {'NE': 'News',
                  'EV': 'Events',
@@ -29,9 +30,11 @@ def paginate_me(request, objects, page_size):
 
 def get_topic(request, category=False):
     if category:
-        large = Post.objects.filter(post_type='LG', hidden=False, category=category).order_by('-date')
+        large = Post.objects.filter(category=category).filter(
+            models.Q(post_type='LG') | models.Q(post_type='IM'), hidden=False, ).order_by('-date')
     else:
-        large = Post.objects.filter(post_type='LG', hidden=False).order_by('-date')
+        large = Post.objects.filter(
+            models.Q(post_type='LG') | models.Q(post_type='IM'), hidden=False).order_by('-date')
         category = 'FE'
     small = Post.objects.filter(post_type='SM', hidden=False).order_by('-date')
 

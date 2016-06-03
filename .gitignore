@@ -3,3 +3,5 @@ keys.py
 *.pyc
 media/*
 *.zip
+*.doc
+*.docx

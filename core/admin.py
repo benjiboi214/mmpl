@@ -44,6 +44,4 @@ class PostAdmin(admin.ModelAdmin):
         obj.save()
 
     def view_on_site(self, obj):
-        return 'http://127.0.0.1:8000' + reverse('post',
-                                                 kwargs={'post_slug': obj.slug,
-                                                         'post_id': obj.id})
+        return reverse('post', kwargs={'post_id': obj.id, 'post_slug': obj.slug})

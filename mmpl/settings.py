@@ -1,5 +1,4 @@
 from keys import secret
-from keys import dbpw
 
 """
 Django settings for mmpl project.
@@ -25,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = secret
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['mmpl.bennyda.ninja']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -81,12 +80,8 @@ WSGI_APPLICATION = 'mmpl.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mmpl',
-        'USER': 'mmpluser',
-        'PASSWORD': dbpw,
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -133,7 +128,7 @@ HAYSTACK_CONNECTIONS = {
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
-    from settings_dev import *
+if os.environ.get('DJANGO_DEVELOPMENT') is None:
+    from settings_prod import *
 
 # import pdb; pdb.set_trace()

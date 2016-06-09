@@ -4,11 +4,13 @@
   {% if post %}
     <div class="row text post">
       <div class="col-lg-10">
-        <h2>{{ post.title }}</h1>
+        <h2>{{ post.title }}</h2>
         <h4>{{ post.subtitle }}</h4>
-				<p>{{ post.body }}</p>
-        {% for element in post.image.all %}
-        <img src="{{ element.image.url }}" height="{{ element.image.height }}" width="{{ element.image.width }}">
+				<p>{{ post.body|linebreaksbr }}</p>
+				{% for i in post.image.all %}
+					<div class="col-lg-12">
+						<img src="{{ i.image.url }}" class="img-responsive">
+					</div>
         {% empty %}
         <!-- Nothing -->
         {% endfor %}

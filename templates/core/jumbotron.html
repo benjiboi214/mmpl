@@ -1,6 +1,6 @@
 {% for j in jumbotron %}
   <div class="container">
-    <div class="jumbotron alert-box">
+    <div class="jumbotron alert-box" style="background-image:url({% for i in j.image.all %}{{ i.image.url }}{% endfor %})">
       <h1>{{ j.title }}</h1>
       <p>{{ j.subtitle }}</p>
       <p><a class="btn btn-primary btn-lg" href="{% url 'post' j.id j.slug %}" role="button">Learn more</a></p>

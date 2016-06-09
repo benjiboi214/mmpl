@@ -31,7 +31,7 @@ def paginate_me(request, objects, page_size):
 def get_topic(request, category=False):
     if category:
         large = Post.objects.filter(category=category).filter(
-            models.Q(post_type='LG') | models.Q(post_type='IM'), hidden=False, ).order_by('-date')
+            models.Q(post_type='LG') | models.Q(post_type='IM'), hidden=False).order_by('-date')
     else:
         large = Post.objects.filter(
             models.Q(post_type='LG') | models.Q(post_type='IM'), hidden=False).order_by('-date')

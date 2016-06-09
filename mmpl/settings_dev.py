@@ -128,8 +128,5 @@ HAYSTACK_CONNECTIONS = {
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
-if os.environ.get('DJANGO_DEVELOPMENT') is not None:
-    from settings_dev import *
-
 
 # import pdb; pdb.set_trace()

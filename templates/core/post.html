@@ -14,7 +14,7 @@
         {% empty %}
         <!-- Nothing -->
         {% endfor %}
-        <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} at {{ post.date }}</p>
+        <p>Posted by: {{ post.author.first_name }} {{ post.author.last_name }} on {{ post.date }}</p>
       </div>
       <div class='col-lg-2'>
         <h3>{{ post.get_category_display }}</h3>

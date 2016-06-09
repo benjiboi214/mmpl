@@ -115,11 +115,11 @@ def get_contact_form(request, form_class, title):
             email = EmailMessage(
                 "New contact form submission",
                 content,
-                "Your website" + '',
-                ['youremail@gmail.com'],
+                'MMPL AUS',
+                ['benjiboi214@gmail.com'],
                 headers={'Reply-To': contact_email}
                 )
-            email.send()
+            email.send(fail_silently=False)
             messages.success(request, 'Email Sent')
 
             return render(request, 'core/contact.html')

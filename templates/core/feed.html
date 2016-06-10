@@ -37,7 +37,7 @@
 							{% endif %}
 						{% empty %}
 						{% endfor %}
-						{% for i in post.file.all %}
+						{% for i in post.file.all reversed %}
 							<div class="col-lg-8">
 								<p><a href="{{ i.file.url }}">{{ i.title }}</a></p>
 							</div>

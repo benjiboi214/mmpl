@@ -5,3 +5,4 @@ media/*
 *.zip
 *.doc
 *.docx
+db.sqlite3

@@ -1,6 +1,12 @@
 {% extends "core/base.html" %}
 
-{% block body %}
+{% block head_title %}
+	{% if actual_category %}
+		{{ actual_category }}
+	{% endif %}
+{% endblock %}
+
+{% block posts %}
 	<div class="col-lg-9">
 		{% if large_posts %}
 			{% for post in large_posts %}

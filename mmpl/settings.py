@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
     'core',
     'crispy_forms',
     'haystack',
@@ -121,6 +122,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Path to the media files hosted o
 MEDIA_URL = '/media/'  # URL for the media files to be svered from.
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'mmplaus@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = email_user
